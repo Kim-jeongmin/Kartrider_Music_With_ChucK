@@ -1,6 +1,6 @@
 MidiOut mout;
 MidiMsg msg;
-1 => int port; // 번호는 상황에 따라 달라서 확인 필요
+2 => int port; // 번호는 상황에 따라 달라서 확인 필요
 if (!mout.open(port)) {
     <<< "Error: MIDI port did not open on port: ", port >>>;
     me.exit();
