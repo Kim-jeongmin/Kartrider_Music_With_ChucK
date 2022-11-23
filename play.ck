@@ -57,6 +57,6 @@ fun void play(dur length[][], int melody[][][]){
 spork ~ play(right_length, right_melody);
 spork ~ play(left_length, left_melody);
 
-qn*4*20 => now;
+qn*4*38 => now;
 
 
