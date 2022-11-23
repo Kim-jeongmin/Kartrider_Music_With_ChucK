@@ -1,6 +1,6 @@
 MidiOut mout;
 MidiMsg msg;
-1 => int port; // 번호는 상황에 따라 달라서 확인 필요
+2 => int port; // 번호는 상황에 따라 달라서 확인 필요
 if (!mout.open(port)) {
     <<< "Error: MIDI port did not open on port: ", port >>>;
     me.exit();
@@ -57,6 +57,6 @@ fun void play(dur length[][], int melody[][][]){
 spork ~ play(right_length, right_melody);
 spork ~ play(left_length, left_melody);
 
-qn*4*23 => now;
+qn*4*38 => now;
 
 
