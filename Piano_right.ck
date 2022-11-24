@@ -124,17 +124,17 @@ public class Piano_right {
         [qn, en, en, en, en, en, en],
         [en, en, en, en, en+stn, stn, stn, stn, stn, stn],
         
-        [qn, qn, en+stn ,en+stn, en],
+        [qn, qn, en+stn, en+stn, en],
         [en, en, en, en, qn, qn],
         [qn, en, en, qn, qn],
-        [en, en, en, en ,hn],
+        [en, en, en, en, hn],
         
         [qn, qn, en+stn, en+stn, en],
         [en, en, en, en, qn, qn],
         [qn, en, en, en, en, en, en],
-        [en, en, en, en, qn , stn, stn, stn, stn],
+        [en, en, en, en, qn, stn, stn, stn, stn],
         
-        [qn , qn, qn, en, en],
+        [qn, qn, qn, en, en],
         [qn, en, stn, stn, en, en, qn],
         [qn, qn, qn, en, en],
         [qn, en, stn, stn, en, en, en, en],
@@ -149,8 +149,8 @@ public class Piano_right {
         [en, stn, stn, stn, stn, stn, stn, qn, en, en],
         [en, stn, stn, stn, qn+stn, stn, stn, stn, stn, qn],
         
-        [en, en, stn, en, en, qn, qn],
-        [en+stn, stn, qn, en, qn, stn stn],
+        [en, en, stn, stn, en, qn, qn],
+        [en+stn, stn, qn, en, qn, stn, stn],
         [en+stn, stn, qn+en, stn, stn, en, en],
         [qn, qn, qn, qn],
         
