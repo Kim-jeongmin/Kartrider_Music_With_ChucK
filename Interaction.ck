@@ -10,7 +10,7 @@
 // X : 88, 마지막 1분
 // C : 67, 점수 계산음
 // V : 86, 박스 오픈음
-
+// B : 66, 엔진음
 
 // Hid connect
 Hid hi;
@@ -32,6 +32,7 @@ SndBuf quest_clear => dac;
 SndBuf reset => dac;
 SndBuf start_long => dac;
 SndBuf start_short => dac;
+SndBuf engine => dac;
 
 // sound file 경로
 me.dir() + "res/calculate_score.wav" => cal_score.read;
@@ -46,6 +47,7 @@ me.dir() + "res/quest_clear.wav" => quest_clear.read;
 me.dir() + "res/reset.wav" => reset.read;
 me.dir() + "res/start_long.wav" => start_long.read;
 me.dir() + "res/start_short.wav" => start_short.read;
+me.dir() + "res/engine.wav" => engine.read;
 
 // pos 맨 뒤로 이동
 cal_score.samples() => cal_score.pos;
@@ -60,9 +62,10 @@ quest_clear.samples() => quest_clear.pos;
 reset.samples() => reset.pos;
 start_long.samples() => start_long.pos;
 start_short.samples() => start_short.pos;
+engine.samples() => engine.pos;
 
 // 소리 크기 조정
-0.2 => cal_score.gain => goal_fs_other.gain => goal_fs.gain => lastlap.gain => left_one_min.gain => levelup.gain => open_box.gain => pass_one_lap.gain => quest_clear.gain => reset.gain => start_long.gain => start_short.gain;
+0.2 => cal_score.gain => goal_fs_other.gain => goal_fs.gain => lastlap.gain => left_one_min.gain => levelup.gain => open_box.gain => pass_one_lap.gain => quest_clear.gain => reset.gain => start_long.gain => start_short.gain => engine.gain;
 
 // 사용자 키 입력
 while (true) {
@@ -94,6 +97,8 @@ while (true) {
             else if (msg.ascii == 67) 0 => cal_score.pos;
             // V : 86, 박스 오픈음
             else if (msg.ascii == 86) 0 => open_box.pos;
+            // B : 66, 엔진음
+            else if (msg.ascii == 66) 0 => engine.pos;
         }
         else {
             <<< "Button Up:", msg.ascii >>>;
