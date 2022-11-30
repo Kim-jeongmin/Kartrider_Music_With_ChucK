@@ -6,6 +6,8 @@
 // A : 65, 플래그 스테이지 goal
 // S : 83, 플래그 스테이지 goal(다른 팀)
 // D : 68, 한 바퀴 pass
+// F : 70, 부스트
+// G : 71, 드리프트
 // Z : 90, 마지막 랩
 // X : 88, 마지막 1분
 // C : 67, 점수 계산음
@@ -20,7 +22,9 @@ if (! hi.openKeyboard(device)) me.exit();
 <<< "keyboard '" + hi.name() + "' ready", "" >>>;
 
 // 출발 신호음
+SndBuf boost => dac;
 SndBuf cal_score => dac;
+SndBuf drift => dac;
 SndBuf goal_fs_other => dac;
 SndBuf goal_fs => dac;
 SndBuf lastlap => dac;
@@ -35,7 +39,9 @@ SndBuf start_short => dac;
 SndBuf engine => dac;
 
 // sound file 경로
+me.dir() + "res/boost.wav" => boost.read;
 me.dir() + "res/calculate_score.wav" => cal_score.read;
+me.dir() + "res/drift.wav" => drift.read;
 me.dir() + "res/goal_flagstage_other_team.wav" => goal_fs_other.read;
 me.dir() + "res/goal_flagstage.wav" => goal_fs.read;
 me.dir() + "res/last_lap.wav" => lastlap.read;
@@ -50,7 +56,9 @@ me.dir() + "res/start_short.wav" => start_short.read;
 me.dir() + "res/engine.wav" => engine.read;
 
 // pos 맨 뒤로 이동
+boost.samples() => boost.pos;
 cal_score.samples() => cal_score.pos;
+drift.samples() => drift.pos;
 goal_fs_other.samples() => goal_fs_other.pos;
 goal_fs.samples() => goal_fs.pos;
 lastlap.samples() => lastlap.pos;
@@ -65,8 +73,8 @@ start_short.samples() => start_short.pos;
 engine.samples() => engine.pos;
 
 // 소리 크기 조정
-0.2 => cal_score.gain => goal_fs_other.gain => goal_fs.gain => lastlap.gain => left_one_min.gain => levelup.gain => open_box.gain => pass_one_lap.gain => quest_clear.gain => reset.gain => start_long.gain => start_short.gain => engine.gain;
-
+0.2 =>  cal_score.gain => goal_fs_other.gain => goal_fs.gain => lastlap.gain => left_one_min.gain => levelup.gain => open_box.gain => pass_one_lap.gain => quest_clear.gain => reset.gain => start_long.gain => start_short.gain => engine.gain;
+1.0 => boost.gain => drift.gain;
 // 사용자 키 입력
 while (true) {
     hi => now;
@@ -89,6 +97,10 @@ while (true) {
             else if (msg.ascii == 83) 0 => goal_fs_other.pos;
             // D : 68, 한 바퀴 pass
             else if (msg.ascii == 68) 0 => pass_one_lap.pos;
+            // F : 70, 부스트
+            else if (msg.ascii == 70) 0 => boost.pos;
+            // G : 71, 드리프트
+            else if (msg.ascii == 71) 0 => drift.pos;
             // Z : 90, 마지막 랩
             else if (msg.ascii == 90) 0 => lastlap.pos;
             // X : 88, 마지막 1분
